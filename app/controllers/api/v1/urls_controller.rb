@@ -15,11 +15,6 @@ module Api
         end
       end
 
-      def show
-        @url = current_user.urls.find(params[:id])
-        render json: @url, status: :ok
-      end
-
       private
       def urls_params
         params.require(:url).permit(:original_name)

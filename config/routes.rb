@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'dashboard#index'
 
+  get '/:id' => 'urls#show'
+
   namespace :api do
     namespace :v1 do
-      resources :urls
+      resources :urls, only: [:index, :create]
     end
   end
 end

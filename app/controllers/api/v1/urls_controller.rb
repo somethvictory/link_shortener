@@ -2,12 +2,17 @@ module Api
   module V1
     class UrlsController < ApplicationController
       def create
-        @url = current_user.urls.new(urls_params)
+        @url = current_user.urls.find_or_initialize_by(urls_params)
         if @url.save
           render json: @url, status: :created
         else
-          render json: @url.errors, status: :unprocessible_entity
+          render json: @url.errors, status: :unprocessable_entity
         end
+      end
+
+      def show
+        @url = current_user.urls.find(params[:id])
+        render json: @url, status: :ok
       end
 
       private

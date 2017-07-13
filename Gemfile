@@ -32,6 +32,7 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'json_spec', '~> 1.1.4'
 end
 
 group :development do

@@ -10,6 +10,10 @@ class UrlForm extends React.Component {
     this.handleClick  = this.handleClick.bind(this);
   }
 
+  handleUrlCreated(url) {
+    this.props.handleUrlCreated(url);
+  }
+
   handleClick() {
     const self = this;
     if(this.state.original_name) {
@@ -18,10 +22,9 @@ class UrlForm extends React.Component {
         url: '/api/v1/urls',
         data: {url: this.state},
         success: (response, status, xhr) => {
-          console.log(response)
+          self.handleUrlCreated(response)
         },
         error: (error) => {
-          console.log(error)
           self.setState({ errors: error.responseText });
         }
       });
@@ -40,6 +43,7 @@ class UrlForm extends React.Component {
     return(
       <div>
         <input type='text' onChange={this.handleChange} name='original_name'/>
+        <span className='hint'>format: http://example.com</span>
         <div className='error'>{this.state.errors}</div>
         <button onClick={this.handleClick}>Create</button>
       </div>

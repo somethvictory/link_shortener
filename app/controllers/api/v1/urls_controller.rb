@@ -1,8 +1,13 @@
 module Api
   module V1
     class UrlsController < ApplicationController
+      def index
+        @urls = current_user.urls.all
+        render json: @urls, status: :ok
+      end
+
       def create
-        @url = current_user.urls.find_or_initialize_by(urls_params)
+        @url = current_user.urls.new(urls_params)
         if @url.save
           render json: @url, status: :created
         else

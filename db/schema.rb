@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713072741) do
+ActiveRecord::Schema.define(version: 20170714021907) do
+
+  create_table "logs", force: :cascade do |t|
+    t.string "referer", default: ""
+    t.string "ip", default: ""
+    t.string "user_agent", default: ""
+    t.integer "url_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["url_id"], name: "index_logs_on_url_id"
+  end
 
   create_table "urls", force: :cascade do |t|
     t.string "short_name"
@@ -18,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170713072741) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "logs_count"
     t.index ["user_id"], name: "index_urls_on_user_id"
   end
 

@@ -6,7 +6,11 @@ describe UrlSerializer do
       expect(url.to_json).to have_json_path('short_url')
     end
 
-    it 'original_name' do
+    it 'includes original_name' do
+      expect(url.to_json).to have_json_path('original_name')
+    end
+
+    it 'includes short_url' do
       expect(url.to_json).to have_json_path('original_name')
     end
   end

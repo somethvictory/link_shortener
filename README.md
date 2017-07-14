@@ -1,24 +1,65 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a sample Rails app to create a shorten url from the original url. The app also record some user visit information and can be retrieved from a login user using the API as well.
 
-Things you may want to cover:
 
-* Ruby version
+### Requirments
 
-* System dependencies
+* Ruby > 2.3.x
 
-* Configuration
+* Rails > 5.1.x
 
-* Database creation
+* sqlite3
 
-* Database initialization
 
-* How to run the test suite
+### Setup
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+git clone git@github.com:somethvictory/link_shortener.git
+cd link_shortener
+bundle install
+```
 
-* Deployment instructions
+### Database setup
 
-* ...
+```
+rake db:create
+
+rake db:migrate
+```
+
+
+### Startup server
+
+```
+rails server
+```
+
+### Technologies
+
+Database:   sqlite3
+Server/Api: Rails/Api
+Client:     Reactjs
+
+### Api 
+
+```
+GET   /urls.json                     # return all current user's existing urls
+POST  /urls.json                     # create a new url
+GET   /api/v1/logs?url_id=short_name # return all visited logs from the provided url's short name
+```
+
+### Spec
+
+To run all specs in the project:
+
+```
+rake
+```
+or
+
+```
+rspec
+```
+
+
